@@ -100,15 +100,18 @@ export const HIDDEN_OBJECTS = [
 
 // Birthday letter (Section 10)
 export const BIRTHDAY_LETTER = {
-  to: "To Akshat",
+  to: "My dearest Akshat,",
+  prelude: "Before this birthday ends, there is one last thing I need your heart to know.",
   paragraphs: [
-    "If someone told me a year ago that a random encounter would turn into this — into us — I would have laughed. But here we are, and honestly? This has been the most beautiful, chaotic, wonderful adventure I never planned for.",
-    "You are brilliant in ways that go far beyond code. You see the world differently — with curiosity, humor, and a stubbornness that makes me crazy and grateful in equal measure.",
-    "Thank you for the 3 AM conversations that felt like they lasted five minutes. For making me laugh when I forgot how. For believing in the wildest dreams and making them feel possible.",
-    "Every chapter of us has been my favorite. Every island we've visited, every storm we've sailed through — I'd do it all again. I'd choose this crew every time.",
-    "This year, I want you to know: you are the treasure at the end of every map I'll ever draw.",
+    "Somehow, in this enormous world, life placed you in my path. What began as an unexpected meeting became the safest, warmest, most beautiful part of my life. Loving you was not something I planned. It is something my heart quietly chose, and keeps choosing, every single day.",
+    "I love the way your mind works. I love your curiosity, your ridiculous jokes, your ambition, and even the stubbornness that drives me a little crazy. I love the boy behind all of it too. The one who dreams deeply, cares more than he says, and makes ordinary moments feel like memories I want to keep forever.",
+    "Thank you for every late night conversation, every laugh that made my cheeks hurt, every small kindness, and every time you made me feel understood. Thank you for being the person I want to tell everything to. With you, even silence feels full.",
+    "As you step into twenty two, I hope you see yourself the way I see you. Brilliant. Tender. Capable of building the life you dream about. Worthy of every beautiful thing waiting for you. I will always be proud of you, not only for what you achieve, but simply for who you are.",
+    "If I could give you one thing tonight, it would be the certainty that you are deeply loved. On your brightest days, on your difficult days, and in all the quiet days between them, my heart is with you.",
+    "The clock may be close to midnight, and this birthday may be ending, but my love for you is not measured in hours. I want more mornings with you, more adventures, more unfinished conversations, more dreams, and more years of choosing each other.",
   ],
-  closing: "Happy 22nd Birthday.",
-  signature: "Love,\nIshita",
-  finalMessage: "The greatest adventures are the people we share them with.",
+  closing: "Happy 22nd birthday, Akshat.",
+  declaration: "I love you, my love.",
+  signature: "Always yours,\nIshita",
+  finalMessage: "And when this day becomes a memory, I hope these words still feel like home.",
 };

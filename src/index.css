@@ -587,16 +587,16 @@ body {
 
   #treasure {
     min-height: auto;
-    overflow-y: visible;
+    overflow-y: auto;
   }
 
-  #treasure > .relative {
+  #treasure > .treasure-letter {
     width: 100%;
-    padding: 72px 24px 96px !important;
+    padding: 64px 24px 110px !important;
   }
 
-  #treasure p {
-    line-height: 1.75 !important;
+  #treasure .treasure-letter > p {
+    line-height: 1.7 !important;
   }
 }
 

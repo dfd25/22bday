@@ -20,11 +20,14 @@ export default function S10_Treasure() {
   return (
     <section
       id="treasure"
-      className="relative flex-shrink-0 flex items-center justify-center paper-texture snap-center"
+      className="relative flex-shrink-0 paper-texture snap-center"
+      onWheel={(event) => event.stopPropagation()}
       style={{
         width: 1400,
         minWidth: '100vw',
         height: '100%',
+        overflowY: 'auto',
+        overflowX: 'hidden',
         background: 'linear-gradient(135deg, #FFF8ED 0%, #F4E4C1 50%, #FFF8ED 100%)',
       }}
     >
@@ -36,10 +39,11 @@ export default function S10_Treasure() {
 
       {/* Letter content */}
       <div
-        className="relative flex flex-col items-center"
+        className="treasure-letter relative flex flex-col"
         style={{
-          maxWidth: 750,
-          padding: '40px 40px 180px 40px', // Extra bottom padding for ship tracker
+          width: 'min(760px, calc(100% - 48px))',
+          margin: '0 auto',
+          padding: '80px 48px 150px',
           zIndex: 20,
         }}
       >
@@ -49,7 +53,7 @@ export default function S10_Treasure() {
           style={{
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             color: '#5C4033',
-            marginBottom: 40,
+            marginBottom: 12,
           }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,6 +63,24 @@ export default function S10_Treasure() {
           {BIRTHDAY_LETTER.to}
         </motion.h2>
 
+        <motion.p
+          className="handwritten text-center"
+          style={{
+            fontSize: 'clamp(1.05rem, 1.5vw, 1.25rem)',
+            color: '#8B7355',
+            fontStyle: 'italic',
+            lineHeight: 1.7,
+            margin: '0 auto 32px',
+            maxWidth: 540,
+          }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 1 }}
+        >
+          {BIRTHDAY_LETTER.prelude}
+        </motion.p>
+
         {/* Decorative line */}
         <motion.div
           className="mx-auto"
@@ -66,7 +88,7 @@ export default function S10_Treasure() {
             width: 80,
             height: 1,
             backgroundColor: '#D4C39E',
-            marginBottom: 40,
+            marginBottom: 38,
           }}
           initial={{ width: 0 }}
           whileInView={{ width: 80 }}
@@ -80,12 +102,12 @@ export default function S10_Treasure() {
             key={i}
             className="handwritten"
             style={{
-              fontSize: 'clamp(1.2rem, 2.2vw, 1.45rem)', // Made text larger and responsive
-              color: '#4A3219', // Darkened for better contrast
-              lineHeight: 2.1,
+              fontSize: 'clamp(1.15rem, 1.7vw, 1.35rem)',
+              color: '#4A3219',
+              lineHeight: 1.85,
               fontWeight: 500,
-              marginBottom: 28,
-              textAlign: 'center', // Centered for a more poetic look
+              marginBottom: 30,
+              textAlign: 'left',
             }}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -124,11 +146,11 @@ export default function S10_Treasure() {
 
         {/* Happy Birthday */}
         <motion.h3
-          className="display-text text-center"
+          className="handwritten text-center"
           style={{
             fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
             color: '#5C4033',
-            marginTop: 20,
+            marginTop: 10,
           }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -138,6 +160,21 @@ export default function S10_Treasure() {
           {BIRTHDAY_LETTER.closing}
         </motion.h3>
 
+        <motion.p
+          className="handwritten text-center"
+          style={{
+            fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
+            color: '#A45D55',
+            marginTop: 14,
+            fontWeight: 600,
+          }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 3.8, duration: 1 }}
+        >
+          {BIRTHDAY_LETTER.declaration}
+        </motion.p>
         {/* Signature */}
         <motion.p
           className="handwritten text-center mt-6"
@@ -209,7 +246,7 @@ export default function S10_Treasure() {
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
         >
-          Sail Back Home ⚓
+          Read Our Story Again
         </motion.button>
       </div>
 
@@ -220,7 +257,7 @@ export default function S10_Treasure() {
           className="absolute rounded-full pointer-events-none"
           style={{
             top: -10,
-            left: `${10 + Math.random() * 80}%`,
+            left: `${10 + ((i * 37) % 80)}%`,
             width: 3,
             height: 3,
             backgroundColor: '#D4A853',
@@ -231,7 +268,7 @@ export default function S10_Treasure() {
             opacity: [0, 0.6, 0],
           }}
           transition={{
-            duration: 4 + Math.random() * 3,
+            duration: 4 + (i % 4) * 0.7,
             delay: i * 0.5,
             repeat: Infinity,
             ease: 'linear',
