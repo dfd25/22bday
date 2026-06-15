@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef, useCallback } from 'react';
+
 /**
  * Track scroll progress across the map.
  * Returns 0 (start) to 1 (end).
