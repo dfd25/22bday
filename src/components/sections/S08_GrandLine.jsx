@@ -158,6 +158,44 @@ export default function S08_GrandLine() {
         </motion.p>
       </motion.div>
 
+      {/* Photo — latest adventure */}
+      <motion.div
+        className="absolute"
+        style={{
+          top: '15%',
+          left: '8%',
+          zIndex: 18,
+          width: 190,
+          borderRadius: 4,
+          overflow: 'hidden',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 30px rgba(232,201,122,0.08)',
+          border: '1px solid rgba(232,201,122,0.15)',
+        }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.8, duration: 1 }}
+        whileHover={{ scale: 1.05, boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 40px rgba(232,201,122,0.15)' }}
+      >
+        <div style={{ aspectRatio: '3/4', overflow: 'hidden' }}>
+          <img
+            src={`${import.meta.env.BASE_URL}photos/IMG-20250428-WA0082.jpg`}
+            alt="Our latest adventure"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
+        </div>
+        <div style={{
+          background: 'rgba(10,14,26,0.9)',
+          padding: '8px 12px',
+          textAlign: 'center',
+        }}>
+          <p className="handwritten" style={{ fontSize: '0.9rem', color: 'rgba(232,201,122,0.7)' }}>
+            the latest island ✨
+          </p>
+        </div>
+      </motion.div>
+
       {/* Shooting star */}
       <motion.div
         className="absolute"

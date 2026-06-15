@@ -101,6 +101,86 @@ export default function S09_LaughTale({ onChestOpen }) {
         </p>
       </motion.div>
 
+      {/* Photo — beautiful candid (left) */}
+      <motion.div
+        className="absolute"
+        style={{
+          bottom: 280,
+          left: '12%',
+          zIndex: 25,
+          width: 200,
+          background: 'white',
+          padding: 10,
+          paddingBottom: 40,
+          boxShadow: '4px 6px 20px rgba(0,0,0,0.15), 0 0 30px rgba(247,178,103,0.1)',
+          transform: 'rotate(-6deg)',
+        }}
+        initial={{ opacity: 0, y: 30, rotate: -6 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.8, duration: 1 }}
+        whileHover={{ scale: 1.08, rotate: -2, zIndex: 40 }}
+      >
+        <div style={{ aspectRatio: '16/9', overflow: 'hidden', borderRadius: 2 }}>
+          <img
+            src={`${import.meta.env.BASE_URL}photos/Snapchat-2083101900.jpg`}
+            alt="Beautiful candid moment"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
+        </div>
+        <p className="polaroid__caption" style={{ fontSize: '0.85rem', marginTop: 6 }}>the real treasure</p>
+        <div
+          className="washi-tape washi-tape--gold"
+          style={{
+            top: -14,
+            left: '50%',
+            transform: 'translateX(-50%) rotate(-2deg)',
+            width: 80,
+          }}
+        />
+      </motion.div>
+
+      {/* Photo — outdoor selfie (right) */}
+      <motion.div
+        className="absolute"
+        style={{
+          bottom: 300,
+          right: '12%',
+          zIndex: 25,
+          width: 180,
+          background: 'white',
+          padding: 10,
+          paddingBottom: 40,
+          boxShadow: '4px 6px 20px rgba(0,0,0,0.15), 0 0 30px rgba(247,178,103,0.1)',
+          transform: 'rotate(5deg)',
+        }}
+        initial={{ opacity: 0, y: 30, rotate: 5 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 1, duration: 1 }}
+        whileHover={{ scale: 1.08, rotate: 1, zIndex: 40 }}
+      >
+        <div style={{ aspectRatio: '4/3', overflow: 'hidden', borderRadius: 2 }}>
+          <img
+            src={`${import.meta.env.BASE_URL}photos/IMG-20240216-WA0004.jpg`}
+            alt="Happy together outdoors"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
+        </div>
+        <p className="polaroid__caption" style={{ fontSize: '0.85rem', marginTop: 6 }}>us, always ❤</p>
+        <div
+          className="washi-tape washi-tape--pink"
+          style={{
+            top: -14,
+            left: '50%',
+            transform: 'translateX(-50%) rotate(3deg)',
+            width: 80,
+          }}
+        />
+      </motion.div>
+
       {/* Treasure chest */}
       <motion.div
         className="absolute cursor-pointer"

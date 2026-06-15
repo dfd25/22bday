@@ -66,6 +66,47 @@ export default function S04_January2024() {
         <rect x="435" y="265" width="30" height="6" fill="#A0845C" rx="1" />
       </svg>
 
+      {/* Floating photo polaroid */}
+      <motion.div
+        className="polaroid absolute"
+        style={{
+          bottom: 320,
+          left: '15%',
+          zIndex: 25,
+          transform: 'rotate(-5deg)',
+          width: 180,
+        }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: 1.5 }}
+        animate={{ y: [0, -8, 0] }}
+      >
+        <div style={{
+          width: '100%',
+          aspectRatio: '3/4',
+          overflow: 'hidden',
+          borderRadius: 2,
+        }}>
+          <img
+            src={`${import.meta.env.BASE_URL}photos/IMG-20250209-WA0028.jpg`}
+            alt="Together with hearts"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
+        </div>
+        <p className="polaroid__caption" style={{ fontSize: '0.85rem' }}>our harbor ♡</p>
+        <div
+          className="washi-tape washi-tape--pink"
+          style={{
+            top: -14,
+            left: '50%',
+            transform: 'translateX(-50%) rotate(-2deg)',
+            width: 80,
+          }}
+        />
+      </motion.div>
+
       {/* Paper flowers bloom around the harbor */}
       <PaperFlowers count={8} />
 

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function AudioControls({ oceanEnabled, musicEnabled, toggleOcean, toggleMusic }) {
   return (
     <motion.div
-      className="fixed top-5 right-5 flex flex-col gap-3"
+      className="audio-controls fixed top-5 right-5 flex flex-col gap-3"
       style={{ zIndex: 'var(--z-ui)' }}
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}

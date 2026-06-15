@@ -21,11 +21,9 @@ export default function S05_ChaosIsland() {
 
   // Scattered positions for memories
   const positions = [
-    { left: '5%', top: '15%', rotate: -4 },
-    { left: '35%', top: '8%', rotate: 3 },
-    { left: '65%', top: '18%', rotate: -2 },
-    { left: '15%', top: '50%', rotate: 5 },
-    { left: '55%', top: '45%', rotate: -6 },
+    { left: '5%', top: '12%', rotate: -4 },
+    { left: '38%', top: '35%', rotate: 3 },
+    { left: '10%', top: '50%', rotate: -2 },
   ];
 
   return (
@@ -68,6 +66,47 @@ export default function S05_ChaosIsland() {
         }}
       />
 
+      {/* Pinned photo — restaurant cheers */}
+      <motion.div
+        className="polaroid absolute"
+        style={{
+          bottom: '25%',
+          right: '8%',
+          zIndex: 35,
+          transform: 'rotate(4deg)',
+          width: 170,
+        }}
+        initial={{ opacity: 0, scale: 0.8, rotate: 4 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
+        whileHover={{ scale: 1.08, rotate: 0, zIndex: 50 }}
+      >
+        <div style={{
+          width: '100%',
+          aspectRatio: '4/3',
+          overflow: 'hidden',
+          borderRadius: 2,
+        }}>
+          <img
+            src={`${import.meta.env.BASE_URL}photos/IMG-20231229-WA0192.jpg`}
+            alt="Cheers at the restaurant"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
+        </div>
+        <p className="polaroid__caption" style={{ fontSize: '0.8rem' }}>exhibit A: the chaos 🍹</p>
+        <div
+          className="washi-tape washi-tape--gold"
+          style={{
+            top: -14,
+            left: '50%',
+            transform: 'translateX(-50%) rotate(3deg)',
+            width: 70,
+          }}
+        />
+      </motion.div>
+
       {/* Section title — playful */}
       <motion.div
         className="absolute"
@@ -92,9 +131,10 @@ export default function S05_ChaosIsland() {
         return (
           <motion.div
             key={memory.id}
-            className="absolute cursor-pointer"
+            className="chaos-memory absolute cursor-pointer"
             style={{
               ...pos,
+              '--mobile-index': i,
               zIndex: isRevealed ? 40 : 30,
               width: memory.type === 'sticky' ? 220 : 250,
             }}

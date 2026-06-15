@@ -123,8 +123,8 @@ export default function S03_FirstTreasure() {
         return (
           <motion.div
             key={bottle.id}
-            className="absolute cursor-pointer"
-            style={{ ...positions[i], zIndex: 30 }}
+            className="memory-bottle absolute cursor-pointer"
+            style={{ ...positions[i], '--mobile-index': i, zIndex: 30 }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

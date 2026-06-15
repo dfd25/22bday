@@ -22,7 +22,19 @@ import S10_Treasure from './components/sections/S10_Treasure';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import { useAudio } from './hooks/useAudio';
 
-// Ocean connector between islands
+// Hook to detect mobile
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
+
+// Ocean connector between islands (horizontal mode only)
 function OceanGap({ width = 600, variant = 0 }) {
   const colors = [
     ['#5A9EC4', '#4E8DB5', '#3A7BA5'],
@@ -34,7 +46,7 @@ function OceanGap({ width = 600, variant = 0 }) {
 
   return (
     <div
-      className="relative flex-shrink-0"
+      className="relative flex-shrink-0 ocean-gap-hide-mobile"
       style={{
         width,
         height: '100%',
@@ -78,8 +90,9 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [chestOpened, setChestOpened] = useState(false);
   const scrollContainerRef = useRef(null);
+  const isMobile = useIsMobile();
 
-  const { progress } = useScrollProgress(scrollContainerRef);
+  const { progress } = useScrollProgress(scrollContainerRef, isMobile);
   const { oceanEnabled, musicEnabled, toggleOcean, toggleMusic } = useAudio();
 
   const handleLoadingComplete = useCallback(() => {
@@ -88,16 +101,21 @@ export default function App() {
 
   const handleChestOpen = useCallback(() => {
     setChestOpened(true);
-    // Smoothly scroll to the final section
     const container = scrollContainerRef.current;
     if (container) {
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+      if (isMobile) {
+        const maxScroll = container.scrollHeight - container.clientHeight;
+        container.scrollTo({ top: maxScroll, behavior: 'smooth' });
+      } else {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+      }
     }
-  }, []);
+  }, [isMobile]);
 
-  // Smooth scroll momentum with requestAnimationFrame
+  // Desktop: smooth scroll momentum with requestAnimationFrame
   useEffect(() => {
+    if (isMobile) return; // Mobile uses native touch scrolling
     const container = scrollContainerRef.current;
     if (!container || isLoading) return;
 
@@ -107,7 +125,6 @@ export default function App() {
 
     const onWheel = (e) => {
       e.preventDefault();
-      // Map vertical scroll to horizontal
       const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
       velocity += delta * 0.8;
 
@@ -125,7 +142,7 @@ export default function App() {
       }
 
       container.scrollLeft += velocity;
-      velocity *= 0.92; // Friction
+      velocity *= 0.92;
       animationFrame = requestAnimationFrame(animate);
     };
 
@@ -135,7 +152,7 @@ export default function App() {
       container.removeEventListener('wheel', onWheel);
       if (animationFrame) cancelAnimationFrame(animationFrame);
     };
-  }, [isLoading]);
+  }, [isLoading, isMobile]);
 
   return (
     <>
@@ -144,41 +161,36 @@ export default function App() {
         {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       </AnimatePresence>
 
-      {/* Main horizontal scroll container */}
+      {/* Main scroll container */}
       {!isLoading && (
         <>
           <div
             ref={scrollContainerRef}
-            className="flex h-full no-scrollbar snap-x snap-mandatory"
-            style={{
-              overflowX: 'auto',
-              overflowY: 'hidden',
-              scrollBehavior: 'auto',
-            }}
+            className={`no-scrollbar ${isMobile ? 'mobile-scroll-container' : 'desktop-scroll-container'}`}
           >
             <S01_Opening />
-            <OceanGap width={500} variant={0} />
+            {!isMobile && <OceanGap width={500} variant={0} />}
             <S02_EastBlue />
-            <OceanGap width={600} variant={0} />
+            {!isMobile && <OceanGap width={600} variant={0} />}
             <S03_FirstTreasure />
-            <OceanGap width={500} variant={1} />
+            {!isMobile && <OceanGap width={500} variant={1} />}
             <S04_January2024 />
-            <OceanGap width={600} variant={1} />
+            {!isMobile && <OceanGap width={600} variant={1} />}
             <S05_ChaosIsland />
-            <OceanGap width={500} variant={2} />
+            {!isMobile && <OceanGap width={500} variant={2} />}
             <S06_AIEngineers />
-            <OceanGap width={600} variant={3} />
+            {!isMobile && <OceanGap width={600} variant={3} />}
             <S07_PokemonForest />
-            <OceanGap width={500} variant={2} />
+            {!isMobile && <OceanGap width={500} variant={2} />}
             <S08_GrandLine />
-            <OceanGap width={600} variant={3} />
+            {!isMobile && <OceanGap width={600} variant={3} />}
             <S09_LaughTale onChestOpen={handleChestOpen} />
-            <OceanGap width={400} variant={1} />
+            {!isMobile && <OceanGap width={400} variant={1} />}
             <S10_Treasure />
           </div>
 
           {/* Fixed UI overlays */}
-          <ShipTracker progress={progress} />
+          {!isMobile && <ShipTracker progress={progress} />}
           <ScrollProgress progress={progress} />
           <AudioControls
             oceanEnabled={oceanEnabled}

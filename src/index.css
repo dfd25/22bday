@@ -405,14 +405,214 @@ body {
   color: var(--ink-light);
 }
 
+/* --- Layout Containers --- */
+.desktop-scroll-container {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.mobile-scroll-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
   :root {
     --section-width: 100vw;
-    --gap-between-islands: 200px;
+    --gap-between-islands: 0px;
+  }
+
+  /* Hide ocean gaps on mobile */
+  .ocean-gap-hide-mobile {
+    display: none !important;
+  }
+
+  /* All sections become full-width vertical blocks */
+  section {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    overflow: hidden;
+  }
+
+  /* Scale down polaroids */
+  .polaroid {
+    padding: 6px 6px 28px 6px;
+  }
+
+  .polaroid__caption {
+    font-size: 0.85rem !important;
+  }
+
+  /* Scale down sticky notes and speech bubbles */
+  .sticky-note {
+    padding: 14px;
+    font-size: 0.85rem;
+  }
+
+  .speech-bubble {
+    padding: 12px 14px;
+  }
+
+  /* Smaller washi tape on mobile */
+  .washi-tape {
+    width: 80px !important;
+    height: 24px;
+  }
+
+  /* Audio controls — slightly smaller on mobile */
+  .audio-controls {
+    top: 12px;
+    right: 12px;
+    gap: 8px;
+  }
+
+  .audio-controls button {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Loading screen adjustments */
+  .loading-text {
+    font-size: 1.2rem;
+  }
+
+  /* Postage stamp smaller */
+  .postage-stamp {
+    transform: scale(0.8) !important;
+  }
+
+  #opening > .relative,
+  #january-2024 > .relative,
+  #grand-line > .relative {
+    width: calc(100% - 40px);
+    padding-inline: 12px;
+  }
+
+  #opening .mt-12 {
+    margin-top: 2rem;
+  }
+
+  #first-treasure {
+    min-height: 760px;
+  }
+
+  #first-treasure > div[style*="top: 50px"] {
+    top: 28px !important;
+    left: 24px !important;
+  }
+
+  #first-treasure .memory-bottle {
+    top: calc(150px + (var(--mobile-index, 0) * 150px)) !important;
+    left: 18% !important;
+  }
+
+  #first-treasure .memory-bottle > div.absolute {
+    left: 60px !important;
+    width: min(250px, calc(100vw - 100px)) !important;
+  }
+
+  #first-treasure > p {
+    bottom: 90px !important;
+    width: calc(100% - 48px);
+  }
+
+  #january-2024 .polaroid,
+  #january-2024 .postage-stamp {
+    display: none;
+  }
+
+  #january-2024 > svg[width="900"] {
+    width: 140% !important;
+    height: 260px;
+  }
+
+  #chaos-island {
+    min-height: 900px;
+  }
+
+  #chaos-island .chaos-memory {
+    top: calc(150px + (var(--mobile-index, 0) * 220px)) !important;
+    left: 50% !important;
+    width: min(270px, calc(100vw - 48px)) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  #chaos-island .polaroid { display: none; }
+
+  #ai-engineers .absolute[style*="width: 200px"],
+  #grand-line .absolute[style*="width: 190px"] {
+    display: none;
+  }
+
+  #ai-engineers > svg[viewBox="0 0 1260 250"] {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  #pokemon-forest > div[style*="left: 8%"] {
+    left: 16px !important;
+    right: 16px !important;
+  }
+
+  #grand-line > div.absolute:not(:first-child) {
+    max-width: 45vw;
+  }
+
+  #laugh-tale > div[style*="width: 200px"],
+  #laugh-tale > div[style*="width: 180px"],
+  #laugh-tale > svg[width="60"] {
+    display: none;
+  }
+
+  #laugh-tale > div.cursor-pointer {
+    bottom: 260px !important;
+  }
+
+  #treasure {
+    min-height: auto;
+    overflow-y: visible;
+  }
+
+  #treasure > .relative {
+    width: 100%;
+    padding: 72px 24px 96px !important;
+  }
+
+  #treasure p {
+    line-height: 1.75 !important;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  section {
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .polaroid {
-    padding: 8px 8px 36px 8px;
+    padding: 5px 5px 24px 5px;
+  }
+
+  .sticky-note {
+    padding: 10px;
+    font-size: 0.8rem;
   }
 }

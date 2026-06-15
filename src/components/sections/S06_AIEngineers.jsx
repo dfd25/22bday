@@ -77,6 +77,56 @@ export default function S06_AIEngineers() {
         <line x1="18" y1="28" x2="20" y2="36" stroke="#7BB3D4" strokeWidth="1.5" />
       </svg>
 
+      {/* Photo — college tech event */}
+      <motion.div
+        className="absolute"
+        style={{
+          bottom: 260,
+          right: '8%',
+          zIndex: 18,
+          width: 200,
+          borderRadius: 8,
+          overflow: 'hidden',
+          border: '1px solid rgba(123,179,212,0.3)',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.3), 0 0 20px rgba(123,179,212,0.1)',
+        }}
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.6, duration: 0.8 }}
+        whileHover={{ scale: 1.05 }}
+      >
+        {/* Terminal-style header */}
+        <div style={{
+          background: 'rgba(15,27,46,0.95)',
+          padding: '6px 10px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 5,
+        }}>
+          <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#F4978E' }} />
+          <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#F7B267' }} />
+          <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#4EDB8B' }} />
+          <span style={{ marginLeft: 8, fontSize: '0.6rem', color: 'rgba(123,179,212,0.5)', fontFamily: 'var(--font-annotation)' }}>engineers.jpg</span>
+        </div>
+        <div style={{ aspectRatio: '3/4', overflow: 'hidden' }}>
+          <img
+            src={`${import.meta.env.BASE_URL}photos/IMG-20241211-WA0005.jpg`}
+            alt="Speaking at engineering college"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
+        </div>
+        <div style={{
+          background: 'rgba(15,27,46,0.95)',
+          padding: '6px 10px',
+        }}>
+          <p style={{ fontSize: '0.7rem', color: 'rgba(232,201,122,0.6)', fontFamily: 'var(--font-annotation)' }}>
+            two engineers, one stage ⚡
+          </p>
+        </div>
+      </motion.div>
+
       {/* Constellation map */}
       <svg
         className="absolute"

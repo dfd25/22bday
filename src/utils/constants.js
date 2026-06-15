@@ -63,32 +63,20 @@ export const BOTTLE_MEMORIES = [
 export const CHAOS_MEMORIES = [
   {
     id: 1,
-    title: "The Great Coffee Incident",
-    text: "You ordered the most absurd coffee combination known to humankind. The barista's face was priceless. You drank it all.",
+    title: "When We Almost Gave Up 🏆",
+    text: "AtliQ Manthan Hackathon — we nearly called it quits at 10 PM. Then we pulled an all-nighter, showed up with a brand new version at 10 AM... and it turned out to be the winner. Never giving up is kind of our thing.",
     type: "sticky",
   },
   {
     id: 2,
-    title: "3 AM Debugging",
-    text: "Two sleep-deprived engineers. One bug. Four hours. Zero progress. One incredible inside joke.",
+    title: "The Fake Fights Era 💬",
+    text: "Our WhatsApp group fights were LEGENDARY. Except... they weren't real fights at all. It was just our chaotic, ridiculous way of flirting. Everyone thought we were arguing. We were falling.",
     type: "bubble",
   },
   {
     id: 3,
-    title: "The Accidental Masterpiece",
-    text: "When your 'temporary' solution became the final shipped feature. Sometimes chaos IS the plan.",
-    type: "sticky",
-  },
-  {
-    id: 4,
-    title: "Plot Twist Tuesday",
-    text: "That random Tuesday when everything went wrong and somehow we ended up having the best day ever.",
-    type: "bubble",
-  },
-  {
-    id: 5,
-    title: "The Food Challenge",
-    text: "You said you could eat the entire thing. You could not eat the entire thing. But you tried. And that's what matters.",
+    title: "3-4 Startups (Coming Soon™) 🚀",
+    text: "We have 3-4 entire startup ideas that we've planned, brainstormed, and gotten excited about. Have we actually worked on any of them? Not yet. But the energy? Unmatched. The ambition? Through the roof. The execution? ...pending.",
     type: "sticky",
   },
 ];

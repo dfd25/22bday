@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-
 /**
- * Track horizontal scroll progress across the map.
- * Returns 0 (far left) to 1 (far right).
- * Uses requestAnimationFrame polling since the container may mount after loading.
+ * Track scroll progress across the map.
+ * Returns 0 (start) to 1 (end).
+ * Supports both horizontal (desktop) and vertical (mobile) modes.
  */
-export function useScrollProgress(containerRef) {
+export function useScrollProgress(containerRef, isVertical = false) {
   const [progress, setProgress] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const rafRef = useRef(null);
@@ -16,11 +14,18 @@ export function useScrollProgress(containerRef) {
     const update = () => {
       const container = containerRef?.current;
       if (container) {
-        const maxScroll = container.scrollWidth - container.clientWidth;
+        let maxScroll, currentScroll;
+        if (isVertical) {
+          maxScroll = container.scrollHeight - container.clientHeight;
+          currentScroll = container.scrollTop;
+        } else {
+          maxScroll = container.scrollWidth - container.clientWidth;
+          currentScroll = container.scrollLeft;
+        }
         if (maxScroll > 0) {
-          const p = container.scrollLeft / maxScroll;
+          const p = currentScroll / maxScroll;
           setProgress(Math.min(1, Math.max(0, p)));
-          setScrollLeft(container.scrollLeft);
+          setScrollLeft(currentScroll);
         }
       }
       if (active) {
@@ -34,7 +39,7 @@ export function useScrollProgress(containerRef) {
       active = false;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [containerRef]);
+  }, [containerRef, isVertical]);
 
   return { progress, scrollLeft };
 }
